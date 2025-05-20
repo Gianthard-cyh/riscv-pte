@@ -9,6 +9,9 @@ catalogs:
     '@iconify-json/carbon':
       specifier: ^1.2.8
       version: 1.2.8
+    '@iconify-json/material-symbols':
+      specifier: ^1.2.21
+      version: 1.2.21
     '@vitejs/plugin-vue':
       specifier: ^5.2.3
       version: 5.2.3
@@ -106,7 +109,7 @@ importers:
         specifier: catalog:build
         version: 1.2.8
       '@iconify-json/material-symbols':
-        specifier: ^1.2.21
+        specifier: catalog:build
         version: 1.2.21
       '@types/node':
         specifier: catalog:dev

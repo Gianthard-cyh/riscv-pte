@@ -37,7 +37,7 @@ const pteInfo = ref<PteInfo>(getPteInfo(pte))
     <div py-4 />
 
     <div flex flex-col items-center>
-      <HexInput v-model="name" placeholder="Sv39 pte" :maxlength="18" @submit="(value) => { pteInfo = getPteInfo(value); }" />
+      <HexInput v-model="name" placeholder="Sv39 pte" :maxlength="18" @submit="(value) => { pteInfo = getPteInfo(value); console.log(value) }" />
       <div border="1px solid gray-300 dark:gray-600" flex="~ col" mt-1rem p4 rounded-md>
         <div>
           <Tooltip v-for="(bit, index) in pteInfo.binaryStr" :key="index">

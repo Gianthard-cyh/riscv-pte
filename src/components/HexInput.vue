@@ -30,6 +30,12 @@ function submit() {
     emit('submit', BigInt(modelValue.value))
   }
 }
+
+watch(
+  () => modelValue.value,
+  submit,
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -40,9 +46,7 @@ function submit() {
       :placeholder="props.placeholder"
       :maxlength="props.maxlength"
       class="outline-none font-mono px-4 py-2 border-1 border-gray-300 rounded-md transition-all dark:border-gray-600 focus:border-blue-500 hover:border-gray-400"
-      @input="submit"
     >
-    <!-- 嵌入合法性标识 -->
     <div
       v-if="!isValid && !isEmpty"
       class="i-material-symbols:warning-outline text-base text-red-500 translate-y-[-50%] right-2 top-1/2 absolute"

@@ -10,13 +10,24 @@ const props = defineProps({
     type: Number,
     default: 20,
   },
+  modelValue: {
+    type: String,
+    default: '0x1000',
+  },
 })
 
 const emit = defineEmits<{
-  (e: 'submit', value: bigint): void
+  (e: 'submit', value: string): void
 }>()
 
-const modelValue = defineModel<string>({ default: '' })
+const modelValue = ref(props.modelValue)
+
+watch(
+  () => props.modelValue,
+  (value) => {
+    modelValue.value = value
+  },
+)
 
 function validateHex(value: string): boolean {
   return /^0x[0-9a-fA-F]+$/.test(value)
@@ -27,7 +38,7 @@ const isValid = computed(() => validateHex(modelValue.value))
 
 function submit() {
   if (isValid.value) {
-    emit('submit', BigInt(modelValue.value))
+    emit('submit', modelValue.value)
   }
 }
 
@@ -41,10 +52,7 @@ watch(
 <template>
   <div class="w-fit relative">
     <input
-      v-model="modelValue"
-      type="text"
-      :placeholder="props.placeholder"
-      :maxlength="props.maxlength"
+      v-model="modelValue" type="text" :placeholder="props.placeholder" :maxlength="props.maxlength"
       class="outline-none font-mono px-4 py-2 border-1 border-gray-300 rounded-md transition-all dark:border-gray-600 focus:border-blue-500 hover:border-gray-400"
     >
     <div

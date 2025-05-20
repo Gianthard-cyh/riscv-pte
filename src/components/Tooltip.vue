@@ -13,7 +13,7 @@ const { y } = useElementBounding(triggerRef)
     <slot />
 
     <div
-      v-show="isHover"
+      v-if="isHover"
       :style="{ left: `${x + 10}px`, top: `${y - 36}px` }"
       class="text-sm text-white px-2 py-1 rounded bg-black bg-opacity-80 pointer-events-none shadow transition-opacity duration-100 fixed z-50"
     >
